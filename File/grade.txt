@@ -1,0 +1,26 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+public class FileNo3 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		Scanner sc = new Scanner(new File("studentinfo.txt"));
+		
+		while(sc.hasNextLine()) {
+			String student =sc.nextLine();
+			StringTokenizer st =new StringTokenizer(student,"*");
+			String name = st.nextToken();
+			int mark = Integer.parseInt(st.nextToken()) ;
+			
+			String score = "B";
+			if(mark>=90) {
+				score = "A";
+			}
+			
+			System.out.println(name+"  : "+score);
+		}
+	}
+
+}

@@ -1,0 +1,65 @@
+interface Vehicle{
+	abstract String getName();
+	abstract void setName(String name);
+	abstract void drive();
+}
+class Car implements Vehicle{
+	private String name;
+	public Car(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public void drive() {
+		System.out.println("Texi");
+	}
+}
+class Bus implements Vehicle{
+	private String name;
+	public Bus(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public void drive() {
+		System.out.println("YBS");
+	}
+}
+class Motorcycle implements Vehicle{
+	private String name;
+	public Motorcycle(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public void drive() {
+		System.out.println("Biker");
+	}
+}
+public class VehicleTest {
+
+	public static void main(String[] args) {
+		Car c = new Car("Audi");
+		Bus b = new Bus("Scania");
+		Motorcycle m = new Motorcycle("Honda");
+		
+		System.out.print(c.getName()+" : ");
+		c.drive();
+		System.out.print(b.getName()+" : ");
+		b.drive();
+		System.out.print(m.getName()+" : ");
+		m.drive();
+	}
+}

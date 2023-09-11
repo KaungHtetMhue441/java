@@ -1,0 +1,66 @@
+interface Animal{
+	abstract void setName(String name);
+	abstract String getName();
+	abstract void movment();
+}
+class Bird implements Animal{
+    private String name;
+    public Bird(String name) {
+    	this.name=name;
+    }
+	 public void setName(String name) {
+		 this.name=name;
+	 }
+	 public String getName() {
+		 return this.name;
+	 }
+	 public void movment() {
+		 System.out.println("Fly");
+	 }
+}
+class Snake implements Animal{
+	private String name;
+	public Snake(String name) {
+		this.name=name;
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void movment() {
+		System.out.println("Lay or Sit down");
+	}
+}
+class Monkey implements Animal{
+	private String name;
+	public Monkey(String name) {
+		this.name=name;
+	}
+	public void setName(String name) {
+		this.name=name;
+	}
+	public String getName() {
+		return this.name;
+	}
+	public void movment() {
+		System.out.println("Jump");
+	}
+}
+
+public class AnimalTest {
+
+	public static void main(String[] args) {
+		Bird b = new Bird("Hawk");
+		Snake s = new Snake("Cobra");
+		Monkey m = new Monkey("Spider");
+		
+		System.out.print(b.getName() +" : ");
+		b.movment();
+		System.out.print(s.getName() +" : ");
+		s.movment();
+		System.out.print(m.getName() +" : ");
+		m.movment();
+	}
+}

@@ -1,0 +1,73 @@
+
+class BankAccount {
+	private String name;
+	private long accountID;
+	private double balance;
+
+	public BankAccount() {
+
+	}
+
+	public BankAccount(String name, long accountID, double balance) {
+		this.name = name;
+		this.accountID = accountID;
+		this.balance = balance;
+	}
+	// Getters and setters public String getName(){return name;}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public long getAccountID() {
+		return accountID;
+	}
+
+	public void setAccountID(long AccountID) {
+		this.accountID = accountID;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public boolean checkWithdraw(double amount) {
+		return balance >= amount;
+	}
+
+	public void display() {
+		System.out.println("Account ID:" + accountID);
+		System.out.println("Name:" + name);
+		System.out.println("Balance:" + balance);
+	}
+
+	public void setBalance(double d) {
+		// TODO Auto-generated method stub
+
+	}
+}
+
+public class Main {
+
+	public static void main(String[] args) {
+		BankAccount[] accounts = new BankAccount[3];
+		accounts[0] = new BankAccount("John Doe", 1001l, 1500.0);
+		accounts[1] = new BankAccount("Jane Smith", 1002l, 2000.0);
+		accounts[2] = new BankAccount("Alice Johnson", 1003l, 3000.0);
+		BankAccount uninitializedAccount = new BankAccount();
+		uninitializedAccount.setName("BobBrown");
+		uninitializedAccount.setAccountID(1004l);
+		uninitializedAccount.setBalance(1000.0);
+		if (uninitializedAccount.checkWithdraw(500.0)) {
+			uninitializedAccount.setBalance(uninitializedAccount.getBalance() - 500.0);
+			System.out.println("Widthdrawal successful.");
+		} else {
+			System.out.println("Insuffiecient balance for Widthdrawal.");
+
+		}
+		System.out.println("Account information:");
+		uninitializedAccount.display();
+
+	}
+
+}

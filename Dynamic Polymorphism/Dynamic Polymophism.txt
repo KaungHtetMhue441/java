@@ -1,0 +1,84 @@
+
+class Student {
+	protected final static int NUM_OF_TESTS = 3;
+	protected String name;
+	protected String courseGrade;
+	protected int test[];
+
+	Student() {
+	}
+
+	Student(String name, int test[]) {
+		this.name = name;
+		this.test = test;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public String getCourseGrade() {
+		return courseGrade;
+	}
+
+	public int[] getTest() {
+		return test;
+	}
+
+	public String computeCourseGrade() {
+		return null;
+	}
+}
+
+class GraduateStudent extends Student {
+	public GraduateStudent(String name, int test[]) {
+		super(name, test);
+	}
+
+	public String computeCourseGrade() {
+		int total = 0;
+		for (int i = 0; i < NUM_OF_TESTS; i++) {
+			total += test[i];
+		}
+		if (total / NUM_OF_TESTS >= 80) {
+			courseGrade = "Pass";
+		} else {
+			courseGrade = "No Pass";
+		}
+		return courseGrade;
+	}
+}
+
+class UnderGraduateStudent extends Student {
+	public UnderGraduateStudent(String name, int test[]) {
+		super(name, test);
+	}
+
+	public String computeCourseGrade() {
+		int total = 0;
+		for (int i = 0; i < NUM_OF_TESTS; i++) {
+			total += test[i];
+		}
+		if (total / NUM_OF_TESTS >= 70) {
+			courseGrade = "Pass";
+		} else {
+			courseGrade = "No Pass";
+		}
+		return courseGrade;
+	}
+}
+
+public class StudentMain {
+
+	public static void main(String args[]) {
+		int test[] = { 80, 90, 90 };
+		Student s1 = new GraduateStudent("Su Su", test);
+		s1.computeCourseGrade();
+		System.out.println(s1.getCourseGrade()); // Pass
+
+		int test1[] = { 70, 70, 60 };
+		Student s2 = new UnderGraduateStudent("Aye Aye", test1);
+		s2.computeCourseGrade();
+		System.out.println(s2.getCourseGrade()); // No Pass
+	}
+}

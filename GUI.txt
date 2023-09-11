@@ -1,0 +1,143 @@
+import java.awt.*;
+import java.awt.event.*;
+import java.io.*;
+import javax.swing.*;
+
+public class SetI extends JFrame implements ActionListener {
+	JLabel lname,lrollNo,lmajor,laddress,lcopy,lph;
+	
+
+	JLabel lpass;//For Password Label box;
+	
+	JTextField txtName,txtRoll,txtCopy,txtPh;
+	
+	JPasswordField txtPassword;//For Password input Box
+	JRadioButton rb1,rb2;
+	ButtonGroup rbgroup;
+	JComboBox cb1;
+	JButton bshow,bclear;
+	
+	JPanel p,mainPanel,rbPanel,buttonPanel;
+	
+	String selectedmajor="";
+	
+	
+	
+	public SetI(){
+		setTitle("Employee Information");
+		setSize(500,400);
+		setLocation(150,250);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+				
+		lname=new JLabel("Employee name");
+		lrollNo=new JLabel("Position");
+		lmajor=new JLabel("Gender");
+		laddress=new JLabel("Department");
+		lcopy=new JLabel("Address");
+		lph=new JLabel("PhoneNo.");
+		lpass = new JLabel("Password");//Create Password Label 
+		
+		txtName=new JTextField(15);
+		txtRoll=new JTextField(15);
+		txtCopy=new JTextField(15);
+		txtPh=new JTextField(15);
+		txtPassword = new JPasswordField();//create Password input box
+		
+		rb1=new JRadioButton("Male");
+		rb2=new JRadioButton("Female");
+		rb2.setSelected(true);
+		rb1.addActionListener(this);
+		rb2.addActionListener(this);
+		
+		rbgroup=new ButtonGroup(); //Male Female
+		rbgroup.add(rb1);
+		rbgroup.add(rb2);
+		
+		rbPanel=new JPanel();
+		rbPanel.add(rb1);
+		rbPanel.add(rb2);
+		
+		cb1=new JComboBox();
+		cb1.addItem("Computer Programming");
+		cb1.addItem("Technical Support");
+		cb1.addItem("H & R");
+		cb1.addItem("Networking Department");
+		cb1.setSelectedIndex(0);
+		
+		bshow=new JButton("Save");
+		bclear=new JButton("Clear");
+		bshow.addActionListener(this);
+		bclear.addActionListener(this);
+		
+		p=new JPanel();
+		p.setBorder(BorderFactory.createEtchedBorder());
+		p.setLayout(new GridLayout(8,5));
+		
+		p.add(lname); p.add(txtName);
+		p.add(lmajor);p.add(rbPanel);
+		p.add(lrollNo);p.add(txtRoll);
+		p.add(laddress);p.add(cb1);
+		p.add(lcopy);p.add(txtCopy);
+		p.add(lph);p.add(txtPh);
+		
+		p.add(lpass);p.add(txtPassword);//Adding Password label and Password input box
+		
+		mainPanel=new JPanel();
+		mainPanel.setBorder(BorderFactory.createEtchedBorder());
+		mainPanel.add(p,BorderLayout.CENTER);
+		
+		buttonPanel=new JPanel();
+		buttonPanel.setBorder(BorderFactory.createEtchedBorder());
+		buttonPanel.add(bshow);buttonPanel.add(bclear);
+		
+		
+		this.add(mainPanel);
+		this.add(buttonPanel,BorderLayout.SOUTH);
+		setVisible(true);
+		
+	}
+		
+	public void actionPerformed(ActionEvent e){
+		
+		if(e.getSource()==rb1){
+			
+			selectedmajor=rb1.getLabel();
+			
+		}
+		if(e.getSource()==rb2){
+			selectedmajor=rb2.getLabel();
+		}
+		if(e.getSource()==bshow){
+			PrintWriter pw=null;
+			try {
+				pw= new PrintWriter(new FileWriter("bookInfo.txt",true));
+			
+			pw.println("Book Title:\t"+txtName.getText()+"\n Major :\t"+selectedmajor+"\n Author:\t"+txtRoll.getText()+"\n Type:\t"+cb1.getSelectedItem()+"\n No. of Copy:\t"+txtCopy.getText()+"\n Password :"+txtPassword.getText());
+			pw.close();
+			} 
+			catch (IOException e1) 
+			{
+				e1.printStackTrace();
+			}
+			JOptionPane.showMessageDialog(null,"Save the information of the empolyee to the file successfully");
+			txtName.setText("");
+			txtRoll.setText("");
+			txtCopy.setText("");
+			cb1.setSelectedIndex(0);
+		}
+			
+		if(e.getSource()==bclear){
+			txtName.setText("");
+			txtRoll.setText("");
+			txtCopy.setText("");
+			
+			
+		}
+	}
+	
+	public static void main(String[] argst) {
+	new SetI();
+	}
+
+}
+

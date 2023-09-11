@@ -1,0 +1,53 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.util.Scanner;
+
+class Student implements Serializable {
+	String name;
+	int age;
+	String grade;
+
+public Student(String n,int a,String g){
+	String name=n;
+	int age=a;
+	String grade=g;
+	}
+public String getName() {
+	return name;
+	}
+public int getAge() {
+	return age;
+	}
+public String getGrade() {
+	return grade;
+	}
+}
+
+public class Object_Serial {
+public static void main(String[] args) throws IOException {
+	Student s;
+	File f=new File("Student.txt");
+	FileOutputStream out=new FileOutputStream(f);
+	ObjectOutputStream obj=new ObjectOutputStream(out);
+	
+	Scanner sc=new Scanner(System.in);
+		for(int i=0;i<3;i++)
+		{
+			System.out.print("Enter name:");
+			String n=sc.next();
+			System.out.print("Enter age:");
+			int a=sc.nextInt();
+			System.out.print("Enter grade:");
+			String g=sc.next();
+			
+			s=new Student(n,a,g);
+			obj.writeObject(s);
+		}
+		obj.close();
+	}
+
+}

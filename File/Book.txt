@@ -1,0 +1,52 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+import java.util.StringTokenizer;
+
+
+class Book{
+	String title;
+	int edition;
+	double price;
+	public Book(String title,int edition,double price) {
+		this.title = title;
+		this.edition = edition;
+		this.price = price;
+		
+	}
+	public String getTitle() {
+		return title;
+	}
+	public int getEdition() {
+		return edition;
+	}
+	public double getPrice() {
+		return price;
+	}
+	
+	public void showBook() {
+		System.out.println("Title :"+this.title);
+		System.out.println("Edition :"+this.edition);
+		System.out.println("Title :"+this.price);
+	}
+}
+public class Tutorial2 {
+
+	public static void main(String[] args) throws FileNotFoundException {
+		Scanner sc = new Scanner(new File("BookInfo.txt"));
+		String bookinfo;
+		Book[] books = new Book[5];
+		int index = 0;
+		while(sc.hasNext()) {
+			bookinfo = sc.nextLine();
+			
+			StringTokenizer st = new StringTokenizer(bookinfo,"*");
+			books[index] = new Book(st.nextToken(),Integer.parseInt(st.nextToken()),Double.parseDouble(st.nextToken()));
+			books[index].showBook();
+			index++;
+		}
+
+		
+	}
+
+}
