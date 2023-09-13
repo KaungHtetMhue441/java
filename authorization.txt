@@ -1,0 +1,41 @@
+Create role owners,employee;
+ Privileges can be granted to roles:
+Grant all on employee.* to owners;
+Grant select on emp to employee;
+ Use create user to create the user accounts:
+create user kimmy @localhost identified by ‘kk';
+create user jin @localhost identified by ‘jj’;
+create user cindy @localhost identified by ‘cc’;
+ Roles can be granted to users:
+grant owners to kimmy @localhost;
+grant employee to jin@localhost, cindy@localhost;
+
+
+
+
+ Checking Role Privileges
+show grants for kimmy@localhost using owners;
+show grants for jin@localhost using employee;
+show grants for cindy@localhost using employee;
+Activating Roles
+set default role all to kimmy@localhost, jin@localhost, cindy@localhost; 
+To know active roles within the current session 
+select current_role();
+
+
+The revoke statement is used to revoke authorization.
+		revoke <privilege list>
+		on <relation or view> 
+		from <user list>
+Example:	revoke select on student from U1, U2, U3 @localhost;
+
+Drop created user 
+Syntax: drop user usrname@localhost;
+Eg: drop user SuSu @localhost;
+
+
+Revoking Roles or Role Privileges
+revoke owners from kimmy @localhost;
+revoke employee from jin @localhost;
+revoke update on employee.* from owners;
+
